@@ -1,2 +1,2 @@
 # LabelManager
- Software for extracting labels from .rar, turning into pdf and printing them
+ Software for extracting zpl labels from all .zip files in a specific folder and turning them into pdf

@@ -1,4 +1,0 @@
-DeleteZip:True
-OpenPdf:True
-ZipPath:./downloads
-OutputPath:./pdfs
