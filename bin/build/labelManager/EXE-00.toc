@@ -2,7 +2,7 @@
  False,
  False,
  True,
- 'D:\\ESTUDO\\repositorios\\LabelManager\\favicon\\favicon.ico',
+ 'D:\\ESTUDO\\repositorios\\LabelManager\\bin\\..\\favicon\\favicon.ico',
  None,
  False,
  False,
@@ -50,7 +50,7 @@
  [],
  False,
  False,
- 1659201307,
+ 1659305965,
  [('runw.exe',
    'D:\\ESTUDO\\repositorios\\LabelManager\\Env\\nenv\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\runw.exe',
    'EXECUTABLE')])

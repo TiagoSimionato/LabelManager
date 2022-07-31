@@ -53,7 +53,7 @@ def setOpPdf():
 
 root = Tk()
 root.title("Label Manager")
-root.iconbitmap(default='D:/ESTUDO/repositorios/LabelManager/favicon/favicon.ico')
+root.iconbitmap(default='./favicon/favicon.ico')
 
 #Configurando o menu no topo da GUI
 mainMenu = Menu(root)

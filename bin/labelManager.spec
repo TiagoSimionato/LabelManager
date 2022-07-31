@@ -37,7 +37,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='D:\\ESTUDO\\repositorios\\LabelManager\\favicon\\favicon.ico',
+    icon='..\\favicon\\favicon.ico',
 )
 coll = COLLECT(
     exe,
