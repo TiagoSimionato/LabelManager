@@ -1,4 +1,0 @@
-DeleteZip:True
-OpenPdf:True
-ZipPath:C:\Users\carlo\Downloads
-OutputPath:C:\Users\carlo\Desktop\Portal da Moda Express\Etiquetas
