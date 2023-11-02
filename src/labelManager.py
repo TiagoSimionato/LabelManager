@@ -3,6 +3,8 @@ from os import listdir, remove, mkdir, path
 from webbrowser import open_new_tab
 from zipfile import ZipFile
 
+PREFSPATH     = './prefs.txt'
+
 class Prefs:
   removeZip     = None
   openPdf       = None
@@ -35,22 +37,21 @@ def toPdf():
         remove(path.realpath(Prefs.zipFolderPath) + '\\' + zipFile)
 
 def getPrefs():
-  prefsPath = './prefs.txt'
-  if (not path.exists(prefsPath)):
-    with open(prefsPath, 'w') as prefs:
+  if (not path.exists(PREFSPATH)):
+    with open(PREFSPATH, 'w') as prefs:
       prefs.write("DeleteZip:True\n")
       prefs.write("OpenPdf:True\n")
       prefs.write("ZipPath:./downloads\n")
       prefs.write("OutputPath:./pdfs\n")
 
-  with open(prefsPath, 'r') as prefs:
+  with open(PREFSPATH, 'r') as prefs:
     Prefs.removeZip = prefs.readline()[10:] == "True\n"
     Prefs.openPdf = prefs.readline()[8:] == "True\n"
     Prefs.zipFolderPath = prefs.readline()[8:][:-1]
     Prefs.outputPath = prefs.readline()[11:][:-1]
 
 def changeConfigs(parameter, choice):
-  with open('./prefs/prefs.txt', 'r') as prefs:
+  with open(PREFSPATH, 'r') as prefs:
     newLine = parameter + ":" + str(choice) + "\n"
     replacementString = ""
     for line in prefs:
@@ -59,7 +60,7 @@ def changeConfigs(parameter, choice):
       else:
         replacementString += line
 
-  with open('./prefs/prefs.txt', 'w') as prefs:
+  with open(PREFSPATH, 'w') as prefs:
     prefs.write(replacementString)
 
   #Atualizo as variaveis    
