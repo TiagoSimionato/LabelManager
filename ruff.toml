@@ -1,0 +1,22 @@
+indent-width = 2
+
+[lint]
+#"ANN201"
+extend-select = [
+  "I001",
+  "ANN001",
+  "ANN401",
+  "S101",
+  "S102",
+  "S110",
+  "S112" ,
+  "S201",
+  "FBT001",
+  "B002",
+  "COM812",
+  "COM818",
+]
+
+[format]
+quote-style="single"
+docstring-code-format = true
