@@ -1,5 +1,7 @@
+__pycache__/
+venv
+
 /Env
-/src/__pycache__
 /downloads
 /pdfs
 /bin
