@@ -11,40 +11,44 @@ def todo():
   messagebox.showwarning('TO DO', 'AINDA NÃO FIZ ESSA PARTE')
 
 
-def new_path_window(mainText: str, configName: str):
+def new_path_window(main_text: str, config_name: str):
   def set_path():
-    newPath = askdirectory(initialdir='')
-    if newPath:
-      change_prefs(configName, newPath)
-      newWindow.destroy()
+    new_path = askdirectory(initialdir='')
+    if new_path:
+      change_prefs(config_name, new_path)
+      new_window.destroy()
 
-  newWindow = Toplevel(root)
-  newWindow.title('')
-  newWindow.minsize(300, 100)
+  new_window = Toplevel(root)
+  new_window.title('')
+  new_window.minsize(300, 100)
 
-  label = Label(newWindow, text=mainText)
+  label = Label(new_window, text=main_text)
   label.pack(padx=30, pady=10)
 
-  submitButton = Button(
-    newWindow,
+  submit_button = Button(
+    new_window,
     text='Definir nova pasta',
     command=set_path,
     padx=20,
     pady=5,
   )
-  submitButton.pack(pady=10)
+  submit_button.pack(pady=10)
+
+
+def get_path_message(path: str) -> str:
+  return f'Caminho atual:\n\n{path if path else "Não definido"}'
 
 
 def new_zip_window():
   new_path_window(
-    'Caminho atual:\n\n' + PREFS.zipPath,
+    get_path_message(PREFS.zipPath),
     'zipPath',
   )
 
 
 def new_pdf_window():
   new_path_window(
-    'Caminho atual:\n\n' + PREFS.outputPath,
+    get_path_message(PREFS.outputPath),
     'outputPath',
   )
 
@@ -69,6 +73,28 @@ def set_open_pdf():
     )
     == 'yes',
   )
+
+
+def handle_to_pdf():
+  if not PREFS.zipPath and not PREFS.outputPath:
+    messagebox.showwarning(
+      'Definir configurações',
+      'Primeiro é necessário definir as pastas onde estão os arquivos das etiquetas para conversão e onde serão salvas as etiquetas convertidas',
+    )
+    return
+  if not PREFS.zipPath:
+    messagebox.showwarning(
+      'Definir pasta com as etiquetas',
+      'Primeiro é necessário definir a pasta onde estão os arquivos das etiquetas para conversão',
+    )
+    return
+  if not PREFS.outputPath:
+    messagebox.showwarning(
+      'Definir pasta onde serão salvas novas etiquetas',
+      'Primeiro é necessário definir a pasta onde serão salvas as etiquetas convertidas',
+    )
+    return
+  to_pdf()
 
 
 root = Tk()
@@ -104,7 +130,7 @@ main_frame.pack(padx=60, pady=30)
 to_pdf_button = Button(
   main_frame,
   text='Converter Etiquetas para PDF',
-  command=to_pdf,
+  command=handle_to_pdf,
   padx=10,
   pady=10,
 )
