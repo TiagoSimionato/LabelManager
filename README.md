@@ -25,4 +25,4 @@ Run `labelManager.py` to start the GUI and begin interacting with the program
 
 ## Compile into exe
 
-`pyinstaller --onedir --icon=favicon/favicon.ico --specpath /bin/spec --distpath /bin/dist --workpath /bin/build src/labelManager.pyw`
+`pyinstaller --onedir --icon=favicon/favicon.ico --specpath bin/spec --distpath bin/dist --workpath bin/build src/labelManager.pyw`

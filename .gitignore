@@ -1,8 +1,7 @@
 __pycache__/
 venv
 
-/Env
 /downloads
 /pdfs
-/bin
+build
 prefs.txt
