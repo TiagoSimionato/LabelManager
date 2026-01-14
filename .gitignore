@@ -4,4 +4,4 @@ venv
 /downloads
 /pdfs
 build
-prefs.txt
+prefs.json
