@@ -88,7 +88,10 @@ config_menu.add_command(
 )
 main_menu.add_cascade(label='Configurações', menu=config_menu)
 pref_menu = Menu(main_menu, tearoff=0)
-pref_menu.add_command(label='Excluir zips', command=set_delete_zip)
+pref_menu.add_command(
+  label='Excluir automaticamente etiquetas convertidas',
+  command=set_delete_zip,
+)
 pref_menu.add_command(
   label='Abrir automaticamente arquivos convertidos',
   command=set_open_pdf,
