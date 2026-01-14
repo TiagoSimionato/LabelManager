@@ -109,13 +109,13 @@ to_pdf_button.pack()
 
 Label(main_frame, text='', pady=0).pack()
 
-print_button = Button(
-  main_frame,
-  text='Imprimir Etiquetas',
-  command=todo,
-  padx=10,
-  pady=10,
-)
-print_button.pack()
+# print_button = Button(
+#   main_frame,
+#   text='Imprimir Etiquetas',
+#   command=todo,
+#   padx=10,
+#   pady=10,
+# )
+# print_button.pack()
 
 root.config(menu=main_menu)
