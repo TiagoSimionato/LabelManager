@@ -2,8 +2,7 @@ from os import listdir, mkdir, path, remove
 from webbrowser import open_new_tab
 from zipfile import ZipFile
 
-from labelary import zpl2_to_pdf
-
+from app.labelary import zpl_to_pdf
 from app.prefs import PREFS
 
 
@@ -16,7 +15,7 @@ def to_pdf():
           for line in zpl:
             strZpl += str(line)
 
-      pdf_labels = zpl2_to_pdf(strZpl)
+      pdf_labels = zpl_to_pdf(strZpl)
 
       if not path.exists(PREFS.outputPath):
         mkdir(PREFS.outputPath)

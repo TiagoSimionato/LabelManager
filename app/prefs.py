@@ -16,7 +16,7 @@ class Prefs(BaseModel):
 def make_default_prefs() -> dict:
   default_prefs = {
     'deleteZip': True,
-    'openPdf': True,
+    'openFile': True,
     'zipPath': '',
     'outputPath': '',
   }
