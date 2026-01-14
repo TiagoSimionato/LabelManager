@@ -1,7 +1,6 @@
 __pycache__/
 venv
 
-/downloads
-/pdfs
+test
 build
 prefs.json
