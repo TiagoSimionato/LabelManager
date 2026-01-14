@@ -36,13 +36,14 @@ def get_prefs():
   return Prefs(**prefs_dic)
 
 
+PREFS = get_prefs()
+
+
 def change_prefs(prefs: Prefs, key: str, value):
+  global PREFS
   new_prefs_dict = prefs.model_dump()
   new_prefs_dict[key] = value
   with open(PREFS_PATH, 'w') as file:
     json.dump(new_prefs_dict, file)
-  prefs = Prefs(**new_prefs_dict)
-  return prefs
-
-
-PREFS = get_prefs()
+  PREFS = get_prefs()
+  return PREFS

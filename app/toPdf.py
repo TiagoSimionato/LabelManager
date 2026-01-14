@@ -4,7 +4,7 @@ from zipfile import ZipFile
 
 from labelary import zpl2_to_pdf
 
-from prefs import PREFS
+from app.prefs import PREFS
 
 
 def toPdf():
@@ -33,7 +33,3 @@ def toPdf():
 
       if PREFS.deleteZip:
         remove(path.realpath(PREFS.zipPath) + '\\' + zipFile)
-
-
-if __name__ == '__main__':
-  import lmGUI  # noqa: F401

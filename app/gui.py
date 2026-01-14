@@ -2,9 +2,8 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter.filedialog import askdirectory
 
-from labelManager import toPdf
-
-from prefs import PREFS, change_prefs
+from app.prefs import PREFS, change_prefs
+from app.toPdf import toPdf
 
 subwindowSize = '300x130'
 
@@ -118,4 +117,3 @@ printButton = Button(
 printButton.pack()
 
 root.config(menu=mainMenu)
-root.mainloop()
