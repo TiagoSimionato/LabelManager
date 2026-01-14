@@ -13,7 +13,7 @@ class Prefs(BaseModel):
   outputPath: str
 
 
-def make_default_prefs():
+def make_default_prefs() -> dict:
   default_prefs = {
     'deleteZip': True,
     'openPdf': True,
@@ -26,7 +26,7 @@ def make_default_prefs():
   return default_prefs
 
 
-def get_prefs():
+def get_prefs() -> Prefs:
   if not path.exists(PREFS_PATH):
     prefs_dic = make_default_prefs()
   else:
@@ -36,14 +36,11 @@ def get_prefs():
   return Prefs(**prefs_dic)
 
 
-PREFS = get_prefs()
-
-
-def change_prefs(prefs: Prefs, key: str, value):
+def change_prefs(key: str, value) -> None:
   global PREFS
-  new_prefs_dict = prefs.model_dump()
-  new_prefs_dict[key] = value
+  setattr(PREFS, key, value)
   with open(PREFS_PATH, 'w') as file:
-    json.dump(new_prefs_dict, file)
-  PREFS = get_prefs()
-  return PREFS
+    json.dump(PREFS.model_dump(), file)
+
+
+PREFS = get_prefs()

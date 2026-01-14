@@ -16,7 +16,7 @@ def newPathWindow(mainText, configName):
   def setPath():
     newPath = askdirectory(initialdir='')
     if newPath:
-      change_prefs(PREFS, configName, newPath)
+      change_prefs(configName, newPath)
       newWindow.destroy()
 
   newWindow = Toplevel(root)
@@ -52,7 +52,6 @@ def newPdfWindow():
 
 def setRmZip():
   change_prefs(
-    PREFS,
     'deleteZip',
     messagebox.askquestion(
       'Escolha uma opção',
@@ -64,7 +63,6 @@ def setRmZip():
 
 def setOpPdf():
   change_prefs(
-    PREFS,
     'openPdf',
     messagebox.askquestion(
       'Escolha uma opção',
