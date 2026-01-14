@@ -36,7 +36,7 @@ def get_prefs() -> Prefs:
   return Prefs(**prefs_dic)
 
 
-def change_prefs(key: str, value) -> None:
+def change_prefs(key: str, value: str | bool) -> None:
   global PREFS
   setattr(PREFS, key, value)
   with open(PREFS_PATH, 'w') as file:
