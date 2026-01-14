@@ -7,29 +7,29 @@ from labelary import zpl2_to_pdf
 from app.prefs import PREFS
 
 
-def toPdf():
-  for zipFile in listdir(PREFS.zipPath):
-    if zipFile.endswith('.zip') and zipFile.startswith('Etiqueta MercadoEnvios'):
-      with ZipFile(path.realpath(PREFS.zipPath) + '\\' + zipFile, 'r') as zip_ref:
+def to_pdf():
+  for zip_file in listdir(PREFS.zipPath):
+    if zip_file.endswith('.zip') and zip_file.startswith('Etiqueta MercadoEnvios'):
+      with ZipFile(path.realpath(PREFS.zipPath) + '\\' + zip_file, 'r') as zip_ref:
         with zip_ref.open('Etiqueta de envio.txt') as zpl:
           strZpl = ''
           for line in zpl:
             strZpl += str(line)
 
-      pdfLabels = zpl2_to_pdf(strZpl)
+      pdf_labels = zpl2_to_pdf(strZpl)
 
       if not path.exists(PREFS.outputPath):
         mkdir(PREFS.outputPath)
 
-      indexOffset = len(listdir(PREFS.outputPath))
-      for i, label in enumerate(pdfLabels):
-        labelPath = path.realpath(PREFS.outputPath) + '\\label{}.pdf'.format(
-          i + indexOffset,
+      index_offset = len(listdir(PREFS.outputPath))
+      for i, label in enumerate(pdf_labels):
+        label_Path = path.realpath(PREFS.outputPath) + '\\label{}.pdf'.format(
+          i + index_offset,
         )
-        with open(labelPath, 'wb') as fid:
+        with open(label_Path, 'wb') as fid:
           fid.write(label)
-          if PREFS.openPdf:
-            open_new_tab('file://' + labelPath)
+          if PREFS.openFile:
+            open_new_tab('file://' + label_Path)
 
       if PREFS.deleteZip:
-        remove(path.realpath(PREFS.zipPath) + '\\' + zipFile)
+        remove(path.realpath(PREFS.zipPath) + '\\' + zip_file)

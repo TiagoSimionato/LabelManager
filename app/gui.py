@@ -2,7 +2,7 @@ from tkinter import Button, Frame, Label, Menu, Tk, Toplevel, messagebox
 from tkinter.filedialog import askdirectory
 
 from app.prefs import PREFS, change_prefs
-from app.toPdf import toPdf
+from app.toPdf import to_pdf
 
 subwindowSize = '300x130'
 
@@ -11,8 +11,8 @@ def todo():
   messagebox.showwarning('TO DO', 'AINDA NÃO FIZ ESSA PARTE')
 
 
-def newPathWindow(mainText: str, configName: str):
-  def setPath():
+def new_path_window(mainText: str, configName: str):
+  def set_path():
     newPath = askdirectory(initialdir='')
     if newPath:
       change_prefs(configName, newPath)
@@ -28,28 +28,28 @@ def newPathWindow(mainText: str, configName: str):
   submitButton = Button(
     newWindow,
     text='Definir nova pasta',
-    command=setPath,
+    command=set_path,
     padx=20,
     pady=5,
   )
   submitButton.pack(pady=10)
 
 
-def newZipWindow():
-  newPathWindow(
+def new_zip_window():
+  new_path_window(
     'Caminho atual:\n\n' + PREFS.zipPath,
     'zipPath',
   )
 
 
-def newPdfWindow():
-  newPathWindow(
+def new_pdf_window():
+  new_path_window(
     'Caminho atual:\n\n' + PREFS.outputPath,
     'outputPath',
   )
 
 
-def setRmZip():
+def set_delete_zip():
   change_prefs(
     'deleteZip',
     messagebox.askquestion(
@@ -60,7 +60,7 @@ def setRmZip():
   )
 
 
-def setOpPdf():
+def set_open_pdf():
   change_prefs(
     'openPdf',
     messagebox.askquestion(
@@ -76,46 +76,46 @@ root.title('Label Manager')
 root.iconbitmap(default='./favicon/favicon.ico')
 root.minsize(302, 167)
 
-mainMenu = Menu(root)
-configMenu = Menu(mainMenu, tearoff=0)
-configMenu.add_command(
+main_menu = Menu(root)
+config_menu = Menu(main_menu, tearoff=0)
+config_menu.add_command(
   label='Definir pasta com as etiquetas',
-  command=newZipWindow,
+  command=new_zip_window,
 )
-configMenu.add_command(
+config_menu.add_command(
   label='Definir pasta para salvar os etiquetas convertidas',
-  command=newPdfWindow,
+  command=new_pdf_window,
 )
-mainMenu.add_cascade(label='Configurações', menu=configMenu)
-prefMenu = Menu(mainMenu, tearoff=0)
-prefMenu.add_command(label='Excluir zips', command=setRmZip)
-prefMenu.add_command(
+main_menu.add_cascade(label='Configurações', menu=config_menu)
+pref_menu = Menu(main_menu, tearoff=0)
+pref_menu.add_command(label='Excluir zips', command=set_delete_zip)
+pref_menu.add_command(
   label='Abrir automaticamente arquivos convertidos',
-  command=setOpPdf,
+  command=set_open_pdf,
 )
-mainMenu.add_cascade(label='Preferências', menu=prefMenu)
+main_menu.add_cascade(label='Preferências', menu=pref_menu)
 
-mainFrame = Frame(root)
-mainFrame.pack(padx=60, pady=30)
+main_frame = Frame(root)
+main_frame.pack(padx=60, pady=30)
 
-toPdfB = Button(
-  mainFrame,
+to_pdf_button = Button(
+  main_frame,
   text='Converter Etiquetas para PDF',
-  command=toPdf,
+  command=to_pdf,
   padx=10,
   pady=10,
 )
-toPdfB.pack()
+to_pdf_button.pack()
 
-Label(mainFrame, text='', pady=0).pack()
+Label(main_frame, text='', pady=0).pack()
 
-printButton = Button(
-  mainFrame,
+print_button = Button(
+  main_frame,
   text='Imprimir Etiquetas',
   command=todo,
   padx=10,
   pady=10,
 )
-printButton.pack()
+print_button.pack()
 
-root.config(menu=mainMenu)
+root.config(menu=main_menu)

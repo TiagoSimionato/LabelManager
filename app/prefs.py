@@ -8,7 +8,7 @@ PREFS_PATH = 'prefs.json'
 
 class Prefs(BaseModel):
   deleteZip: bool
-  openPdf: bool
+  openFile: bool
   zipPath: str
   outputPath: str
 
