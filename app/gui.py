@@ -1,5 +1,4 @@
-from tkinter import *
-from tkinter import messagebox
+from tkinter import Button, Frame, Label, Menu, Tk, Toplevel, messagebox
 from tkinter.filedialog import askdirectory
 
 from app.prefs import PREFS, change_prefs
@@ -12,7 +11,7 @@ def todo():
   messagebox.showwarning('TO DO', 'AINDA NÃO FIZ ESSA PARTE')
 
 
-def newPathWindow(mainText, configName):
+def newPathWindow(mainText: str, configName: str):
   def setPath():
     newPath = askdirectory(initialdir='')
     if newPath:
@@ -38,14 +37,14 @@ def newPathWindow(mainText, configName):
 
 def newZipWindow():
   newPathWindow(
-    'Caminho atual da pasta de downloads:\n\n' + PREFS.zipPath,
+    'Caminho atual:\n\n' + PREFS.zipPath,
     'zipPath',
   )
 
 
 def newPdfWindow():
   newPathWindow(
-    'Caminho atual onde são gerados os PDFs:\n\n' + PREFS.outputPath,
+    'Caminho atual:\n\n' + PREFS.outputPath,
     'outputPath',
   )
 
@@ -55,7 +54,7 @@ def setRmZip():
     'deleteZip',
     messagebox.askquestion(
       'Escolha uma opção',
-      'Deseja Excluir os arquivos zips depois de converter para pdf?',
+      'Deseja Excluir os arquivos das etiquetas depois de converter para pdf?',
     )
     == 'yes',
   )
@@ -66,7 +65,7 @@ def setOpPdf():
     'openPdf',
     messagebox.askquestion(
       'Escolha uma opção',
-      'Deseja abrir automaticamente os pdfs convertidos?',
+      'Deseja abrir automaticamente os arquivos convertidos?',
     )
     == 'yes',
   )
@@ -77,14 +76,19 @@ root.title('Label Manager')
 root.iconbitmap(default='./favicon/favicon.ico')
 root.minsize(302, 167)
 
-# Configurando o menu no topo da GUI
 mainMenu = Menu(root)
 configMenu = Menu(mainMenu, tearoff=0)
-configMenu.add_command(label='Pasta dos Zips', command=newZipWindow)
-configMenu.add_command(label='Pasta dos PDFs', command=newPdfWindow)
+configMenu.add_command(
+  label='Definir pasta com as etiquetas',
+  command=newZipWindow,
+)
+configMenu.add_command(
+  label='Definir pasta para salvar os etiquetas convertidas',
+  command=newPdfWindow,
+)
 mainMenu.add_cascade(label='Configurações', menu=configMenu)
 prefMenu = Menu(mainMenu, tearoff=0)
-prefMenu.add_command(label='Excluir zips automaticamente', command=setRmZip)
+prefMenu.add_command(label='Excluir zips', command=setRmZip)
 prefMenu.add_command(
   label='Abrir automaticamente arquivos convertidos',
   command=setOpPdf,
